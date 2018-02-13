@@ -1,0 +1,12 @@
+instrumentation:
+  root: ./src
+  verbose: true
+  default-excludes: true
+  include-all-sources: true
+reporting:
+  print: summary
+  verbose: true
+  reports:
+    - html
+    - text
+  dir: coverage

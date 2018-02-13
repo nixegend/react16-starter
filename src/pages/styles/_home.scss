@@ -1,0 +1,15 @@
+.home-container {
+  .title {
+    color: red;
+  }
+
+  .img {
+    background-image: url('/img/wb.png');
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

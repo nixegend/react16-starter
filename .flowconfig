@@ -1,0 +1,18 @@
+[ignore]
+./dist/*
+.*/assets/.*
+
+.*/node_modules/fbjs/lib/.*
+.*/node_modules/stylelint/lib/.*
+.*/node_modules/react/node_modules/fbjs/lib/.*
+.*/node_modules/chai-enzyme/node_modules/react-element-to-jsx-string/node_modules/.*
+.*/node_modules/postcss-import/node_modules/pkg-resolve/node_modules/jspm/node_modules/systemjs-builder/test/fixtures/sourcemaps-expectations/.*
+.*/node_modules/react-resizable/.*
+.*/node_modules/react-grid-layout/.*
+.*/node_modules/stylelint/lib/.*
+
+[options]
+module.name_mapper='.*\(.css\)' -> 'empty/object'
+esproposal.export_star_as=enable
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable
