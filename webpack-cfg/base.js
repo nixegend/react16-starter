@@ -29,15 +29,12 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
-        test: /\.(ico|png|jpg|gif|eot|ttf|svg|woff|woff2)(\?.+)?$/,
-        use: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
-        ],
+        test: /\.(png|jpeg|jpg|gif|woff|woff2|eot|ttf|svg|ico|otf)(\?.*$|$)/,
+        use: ['file-loader'],
       },
       {
         test: /\.(json)(\?.+)?$/,
-        use: ['url-loader?name=[path][name].[ext]?[hash]'],
+        use: ['url-loader'],
       },
     ],
   },

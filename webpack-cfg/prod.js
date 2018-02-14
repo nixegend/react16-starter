@@ -14,9 +14,6 @@ const resultConfig = Object.assign({}, {
         drop_console: true,
       },
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,

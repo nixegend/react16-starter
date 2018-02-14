@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const baseConfig = require('./base');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const config = require('../config');
 
 const resultConfig = Object.assign({}, {
@@ -17,9 +18,7 @@ const resultConfig = Object.assign({}, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
-    }),
+    new StyleLintPlugin({ files: ['src/**/*.css'] }),
   ],
 
   devServer: {
