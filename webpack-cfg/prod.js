@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const baseConfig = require('./base');
 
 const resultConfig = Object.assign({}, {
@@ -6,12 +7,18 @@ const resultConfig = Object.assign({}, {
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
+    new ExtractTextPlugin('styles.css'),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,
       comments: false,
       compress: {
-        warnings: false,
         drop_console: true,
+        sequences: true,
+        booleans: true,
+        loops: true,
+        unused: false,
+        warnings: false,
       },
     }),
     new webpack.LoaderOptionsPlugin({

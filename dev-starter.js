@@ -1,9 +1,9 @@
-const config = require('./config');
+const appSettings = require('./app-settings');
 const open = require('open');
 const nodemon = require('nodemon');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const wConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config');
 
 nodemon({
   ext: 'js',
@@ -14,12 +14,12 @@ nodemon({
   console.log('-------------------------\nNODEMON => App restarted due to:\n', `${files}\n-------------------------`);
 });
 
-new WebpackDevServer(webpack(wConfig), wConfig.devServer)
-  .listen(config.clientPort, config.clientHost, (err) => {
+new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer)
+  .listen(appSettings.clientPort, appSettings.clientHost, (err) => {
     if (err) {
       console.log(err);
     }
 
-    console.log(`Listening at >>> http://${config.clientHost}:${config.clientPort}/ <<<`);
-    open(`http://${config.clientHost}:${config.clientPort}/`);
+    console.log(`Listening at >>> http://${appSettings.clientHost}:${appSettings.clientPort}/ <<<`);
+    open(`http://${appSettings.clientHost}:${appSettings.clientPort}/`);
   });

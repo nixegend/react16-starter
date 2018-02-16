@@ -4,7 +4,7 @@
   "description": "react16 starter",
   "main": "./server/index.js",
   "scripts": {
-    "start": "node ./dev-server.js --open",
+    "start": "node ./dev-starter.js --open",
     "devserver": "webpack-dev-server --color",
     "build": "webpack --env production -p",
     "test:w": "npm t -- -w",
@@ -45,8 +45,9 @@
     "babel-istanbul": "^0.12.2",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.9",
@@ -86,6 +87,7 @@
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-scss": "^2.3.0",
+    "stylelint-webpack-plugin": "^0.10.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
