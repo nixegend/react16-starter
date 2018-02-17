@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (settings) => ({
-  entry: [`${settings.srcFolder}/index`],
+  entry: [`${settings.src}/index`],
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),

@@ -6,24 +6,22 @@ module.exports = (settings) => ({
 
   entry: [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://${settings.clientHost}:${settings.clientPort}`,
+    `webpack-dev-server/client?http://${settings.host}:${settings.port}`,
     'webpack/hot/only-dev-server',
-    `${settings.srcFolder}/index.hot-loader`,
+    `${settings.src}/index.hot-loader`,
   ],
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new StyleLintPlugin({ files: [`${settings.srcFolder}/**/*.scss`] }),
+    new StyleLintPlugin({ files: [`${settings.src}/**/*.scss`] }),
   ],
 
   devServer: {
-    contentBase: settings.distFolder,
+    contentBase: settings.dist,
     publicPath: '/',
     hot: true,
     historyApiFallback: true,
-    host: settings.clientHost,
-    port: settings.clientPort,
   },
 });

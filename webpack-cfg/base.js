@@ -1,10 +1,10 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = (settings, env) => {
+module.exports = (settings) => {
   const stylesLoaders = [
     {
       loader: 'css-loader',
-      options: { minimize: env === 'production' },
+      options: { minimize: settings.env === 'production' },
     },
     'postcss-loader',
     'sass-loader',
@@ -12,7 +12,7 @@ module.exports = (settings, env) => {
       loader: 'sass-resources-loader',
       options: {
         resources: [
-          `${settings.srcFolder}/common/styles/variables.scss`,
+          `${settings.src}/common/styles/variables.scss`,
         ],
       },
     },
@@ -21,11 +21,11 @@ module.exports = (settings, env) => {
   return {
     resolve: {
       extensions: ['.js'],
-      modules: [settings.srcFolder, 'node_modules'],
+      modules: [settings.src, 'node_modules'],
     },
 
     output: {
-      path: settings.distFolder,
+      path: settings.dist,
       publicPath: '/',
       filename: 'bundle.js',
     },
@@ -34,12 +34,12 @@ module.exports = (settings, env) => {
       rules: [
         {
           test: /\.js$/,
-          include: settings.srcFolder,
-          use: (env === 'development') ? ['babel-loader', 'eslint-loader'] : ['babel-loader'],
+          include: settings.src,
+          use: (settings.env === 'development') ? ['babel-loader', 'eslint-loader'] : ['babel-loader'],
         },
         {
           test: /\.(css|scss)$/,
-          loader: env === 'production'
+          loader: settings.env === 'production'
             ? ExtractTextPlugin.extract({ fallback: 'style-loader', use: stylesLoaders })
             : ['style-loader', ...stylesLoaders],
         },
