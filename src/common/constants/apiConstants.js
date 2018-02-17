@@ -1,4 +1,4 @@
-import config from '../../../config';
+import config from '../../../app-settings';
 
 export const API_PATH = `http://${config.serverHost}:${config.serverPort}${config.apiUrl}`;
 

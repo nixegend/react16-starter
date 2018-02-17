@@ -1,35 +1,29 @@
-const { resolve } = require('path');
 const webpack = require('webpack');
-const baseConfig = require('./base');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const appSettings = require('../app-settings');
 
-const resultConfig = Object.assign({}, {
+module.exports = (settings) => ({
   devtool: 'inline-source-map',
 
   entry: [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://${appSettings.clientHost}:${appSettings.clientPort}`,
+    `webpack-dev-server/client?http://${settings.clientHost}:${settings.clientPort}`,
     'webpack/hot/only-dev-server',
-    './src/index.hot-loader',
+    `${settings.srcFolder}/index.hot-loader`,
   ],
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new StyleLintPlugin({ files: [`${appSettings.srcFolder}/**/*.scss`] }),
+    new StyleLintPlugin({ files: [`${settings.srcFolder}/**/*.scss`] }),
   ],
 
   devServer: {
-    contentBase: resolve(__dirname, appSettings.distFolder),
-    publicPath: appSettings.publicPath,
+    contentBase: settings.distFolder,
+    publicPath: '/',
     hot: true,
     historyApiFallback: true,
-    host: appSettings.clientHost,
-    port: appSettings.clientPort,
+    host: settings.clientHost,
+    port: settings.clientPort,
   },
-
-}, baseConfig);
-
-module.exports = resultConfig;
+});

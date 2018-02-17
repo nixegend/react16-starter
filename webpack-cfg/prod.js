@@ -1,9 +1,8 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const baseConfig = require('./base');
 
-const resultConfig = Object.assign({}, {
-  entry: ['./src/index'],
+module.exports = (settings) => ({
+  entry: [`${settings.srcFolder}/index`],
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
@@ -26,7 +25,4 @@ const resultConfig = Object.assign({}, {
       debug: false,
     }),
   ],
-
-}, baseConfig);
-
-module.exports = resultConfig;
+});

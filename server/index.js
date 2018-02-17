@@ -33,8 +33,8 @@ server.listen(PORT);
 
 // static files
 app.use(cors(corsOptions)); // CORS middleware on express side
-app.use(express.static(path.resolve(__dirname, config.distFolder)));
-app.use(express.static(path.resolve(__dirname, '../static')));
+app.use(express.static(path.join(__dirname, config.distFolder)));
+app.use(express.static(path.join(__dirname, '../static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fallback(`${__dirname}/index.html`));
