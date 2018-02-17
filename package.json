@@ -13,7 +13,7 @@
     "winflow": "flow check",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint src --ext .js --color",
-    "lint:scss": "stylelint \"./src/**/*.scss\" --config ./stylelint.config.js --color"
+    "lint:scss": "stylelint \"./src/**/*.scss\" --config .stylelintrc --fix --color"
   },
   "author": "Anton Panchenko <nixegend@gmail.com>",
   "license": "MIT",

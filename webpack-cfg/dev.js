@@ -15,7 +15,12 @@ module.exports = (settings) => ({
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new StyleLintPlugin({ files: [`${settings.src}/**/*.scss`] }),
+    new StyleLintPlugin({
+      syntax: 'scss',
+      configFile: '.stylelintrc',
+      context: settings.src,
+      files: '**/*.scss',
+    }),
   ],
 
   devServer: {
