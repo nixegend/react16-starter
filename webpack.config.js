@@ -16,6 +16,7 @@ const settings = {
   env: NODE_ENV,
   src: path.join(__dirname, './src'),
   dist: path.join(__dirname, './build'),
+  publicPath: '/',
   host: 'localhost',
   port: 8080,
 };

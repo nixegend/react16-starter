@@ -26,7 +26,7 @@ module.exports = (settings) => {
 
     output: {
       path: settings.dist,
-      publicPath: '/',
+      publicPath: settings.publicPath,
       filename: 'bundle.js',
     },
 

@@ -19,9 +19,11 @@ module.exports = (settings) => ({
   ],
 
   devServer: {
-    contentBase: settings.dist,
-    publicPath: '/',
-    hot: true,
+    publicPath: settings.publicPath,
     historyApiFallback: true,
+    host: settings.host,
+    port: settings.port,
+    https: false,
+    hot: true,
   },
 });

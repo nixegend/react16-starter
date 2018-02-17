@@ -1,7 +1,6 @@
-const appSettings = require('./app-settings');
 const open = require('open');
-// const nodemon = require('nodemon');
 const webpack = require('webpack');
+// const nodemon = require('nodemon');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('./webpack.config');
 
@@ -14,12 +13,15 @@ const webpackConfig = require('./webpack.config');
 //   console.log('-------------------------\nNODEMON => App restarted due to:\n', `${files}\n-------------------------`);
 // });
 
+const { host, port, https } = webpackConfig.devServer;
+const protocol = https ? 'https' : 'http';
+
 new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer)
-  .listen(appSettings.clientPort, appSettings.clientHost, (err) => {
-    if (err) {
-      console.log(err);
+  .listen(port, host, (error) => {
+    if (error) {
+      console.log(error);
     }
 
-    console.log(`Listening at >>> http://${appSettings.clientHost}:${appSettings.clientPort}/ <<<`);
-    open(`http://${appSettings.clientHost}:${appSettings.clientPort}/`);
+    console.log(`Listening at =====>>> ${protocol}://${host}:${port} <<<=====`);
+    open(`${protocol}://${host}:${port}`);
   });
