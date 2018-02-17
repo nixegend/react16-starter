@@ -5,10 +5,21 @@ import { apiMiddleware } from 'redux-api-middleware';
 
 import mainReducer from './mainReducer';
 
-const configureStore = (history) =>
-  createStore(mainReducer, compose(
+const configureStore = (history) => {
+  const store = createStore(mainReducer, compose(
     applyMiddleware(routerMiddleware(history), thunk, apiMiddleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f,
   ));
+
+  // Enable Webpack hot module replacement for reducers
+  if (module.hot) {
+    module.hot.accept('./mainReducer', () => {
+      const nextMainReducer = require('./mainReducer').default; // eslint-disable-line
+      store.replaceReducer(nextMainReducer);
+    });
+  }
+
+  return store;
+};
 
 export default configureStore;
