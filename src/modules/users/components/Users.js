@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/users.scss';
 
 class Users extends React.Component {
   componentWillMount() {

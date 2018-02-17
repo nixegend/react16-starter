@@ -2,12 +2,10 @@ const NODE_ENV = process.env.npm_config_env || 'development';
 const webpack = require('webpack');
 const { resolve } = require('path');
 
-process.env.NODE_ENV = (NODE_ENV === 'development') ? 'development' : 'production';
-
 const configs = {
-  development: require(resolve(__dirname, './webpack-cfg/dev')),
-  production: require(resolve(__dirname, './webpack-cfg/prod')),
-  staging: require(resolve(__dirname, './webpack-cfg/stage')),
+  development: require(resolve(__dirname, './webpack-cfg/dev')), // eslint-disable-line
+  production: require(resolve(__dirname, './webpack-cfg/prod')), // eslint-disable-line
+  staging: require(resolve(__dirname, './webpack-cfg/stage')), // eslint-disable-line
 };
 
 configs[NODE_ENV].plugins.push(new webpack.DefinePlugin({

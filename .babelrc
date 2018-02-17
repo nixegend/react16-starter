@@ -1,5 +1,5 @@
 {
-  "presets": ["react", ["env", {"modules": false }], "stage-0", "flow"],
+  "presets": ["react", "env", "stage-0"],
   "plugins": ["react-hot-loader/babel"],
 
   "env": {

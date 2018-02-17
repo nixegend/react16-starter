@@ -18,17 +18,17 @@ const resultConfig = Object.assign({}, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new StyleLintPlugin({ files: ['src/**/*.scss'] }),
+    new StyleLintPlugin({ files: [`${appSettings.srcFolder}/**/*.scss`] }),
   ],
 
   devServer: {
-    contentBase: resolve(__dirname, appSettings.static),
-    publicPath: appSettings.urlBasePath,
+    contentBase: resolve(__dirname, appSettings.distFolder),
+    publicPath: appSettings.publicPath,
     hot: true,
     historyApiFallback: true,
     host: appSettings.clientHost,
     port: appSettings.clientPort,
-  }
+  },
 
 }, baseConfig);
 

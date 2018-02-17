@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const open = require('open');
-const config = require('../config');
+const config = require('../app-settings');
 
 const API = config.apiUrl;
 const PORT = process.env.PORT || config.serverPort;
@@ -33,7 +33,8 @@ server.listen(PORT);
 
 // static files
 app.use(cors(corsOptions)); // CORS middleware on express side
-app.use(express.static(path.resolve(__dirname, config.static)));
+app.use(express.static(path.resolve(__dirname, config.distFolder)));
+app.use(express.static(path.resolve(__dirname, '../static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fallback(`${__dirname}/index.html`));

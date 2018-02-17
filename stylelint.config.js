@@ -5,7 +5,7 @@ module.exports = {
     indentation: 2,
     'string-quotes': 'single',
     'no-duplicate-selectors': true,
-    'color-hex-case': 'upper',
+    'color-hex-case': 'lower',
     'color-named': 'never',
     'selector-no-qualifying-type': true,
     'selector-combinator-space-after': 'always',

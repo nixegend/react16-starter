@@ -1,4 +1,5 @@
 const baseConfig = require('./base');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
 const stageConfig = Object.assign({}, {
@@ -7,6 +8,7 @@ const stageConfig = Object.assign({}, {
   },
 
   plugins: [
+    new ExtractTextPlugin('styles.css'),
     new webpack.NoErrorsPlugin(),
   ],
 }, baseConfig);
