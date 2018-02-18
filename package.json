@@ -12,7 +12,7 @@
     "flow": "./node_modules/.bin/flow",
     "winflow": "flow check",
     "lint": "npm run lint:js && npm run lint:scss",
-    "lint:js": "eslint src --ext .js --color",
+    "lint:js": "eslint src --ext .js --fix --color",
     "lint:scss": "stylelint \"./src/**/*.scss\" --config .stylelintrc --fix --color"
   },
   "author": "Anton Panchenko <nixegend@gmail.com>",
