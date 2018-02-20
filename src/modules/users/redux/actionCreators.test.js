@@ -24,7 +24,7 @@ describe('Users > actionCreators', () => {
     nock.cleanAll();
   });
 
-  it('should remove user by ID', () => {
+  test('should remove user by ID', () => {
     const userId = 'd1wy';
     const store = mockStore({ usersList: [...list] });
     const expectedActions = [{ type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }];
@@ -38,7 +38,7 @@ describe('Users > actionCreators', () => {
     });
   });
 
-  it('should load list of users', () => {
+  test('should load list of users', () => {
     const store = mockStore({ usersList: [] });
     const payload = [...list];
 

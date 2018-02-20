@@ -5,6 +5,9 @@
   "env": {
     "production": {
       "presets": ["react-optimize"]
+    },
+    "test": {
+      "presets": ["env", "react"]
     }
   }
 }

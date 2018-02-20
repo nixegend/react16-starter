@@ -13,7 +13,7 @@ function setup() {
 }
 
 describe('<Home />', () => {
-  it('should render Home', () => {
+  test('should render Home', () => {
     const { enzymeWrapper } = setup();
 
     expect(enzymeWrapper.find('.home-container').length).toBe(1);

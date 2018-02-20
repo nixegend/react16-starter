@@ -10,15 +10,15 @@ const list = [
   { id: 'z5wd', name: 'Jim' },
 ];
 
-describe('usersList reducer', () => {
-  it('LOAD_USERS_LIST_SUCCESS should load list of users', () => {
+describe('UsersList reducer', () => {
+  test('LOAD_USERS_LIST_SUCCESS should load list of users', () => {
     const result = usersList([], { type: actionTypes.LOAD_USERS_LIST_SUCCESS, payload: { usersList: [...list] } });
-    console.log(result);
+    console.log(expect(result).toBeAn);
     expect(result).toBeAn('array');
-    // expect(result).toEqual([...list]);
+    expect(result).toEqual([...list]);
   });
 
-  it('REMOVE_USER_BY_ID should remove user by ID', () => {
+  test('REMOVE_USER_BY_ID should remove user by ID', () => {
     const userId = 'd1wy';
     const result = usersList([...list], { type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } });
 
