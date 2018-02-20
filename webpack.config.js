@@ -23,7 +23,7 @@ const settings = {
 
 const resultConfig = Object.assign({}, configs[NODE_ENV](settings), baseConfig(settings));
 
-resultConfig.plugins.push(new HtmlWebpackPlugin({ template: `${settings.src}/template.ejs` }));
+resultConfig.plugins.push(new HtmlWebpackPlugin({ template: `${settings.src}/template.html` }));
 resultConfig.plugins.push(new webpack.DefinePlugin({ 'process.env.NODE_ENV': `"${NODE_ENV}"` }));
 
 module.exports = resultConfig;
