@@ -5,7 +5,8 @@ module.exports = (settings) => ({
   entry: [`${settings.src}/index`],
 
   plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin('styles.css'),
-    new webpack.NoErrorsPlugin(),
   ],
 });

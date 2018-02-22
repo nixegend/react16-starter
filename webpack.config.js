@@ -1,6 +1,6 @@
+const { NODE_ENV } = process.env;
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 
 const baseConfig = require(path.join(__dirname, './webpack-cfg/base')); // eslint-disable-line
 
@@ -10,20 +10,14 @@ const configs = {
   staging: require(path.join(__dirname, './webpack-cfg/stage')), // eslint-disable-line
 };
 
-const { NODE_ENV } = process.env;
-
 const settings = {
   env: NODE_ENV,
   src: path.join(__dirname, './src'),
   dist: path.join(__dirname, './build'),
   publicPath: '/',
+  https: false,
   host: 'localhost',
   port: 8080,
 };
 
-const resultConfig = Object.assign({}, configs[NODE_ENV](settings), baseConfig(settings));
-
-resultConfig.plugins.push(new HtmlWebpackPlugin({ template: `${settings.src}/template.html` }));
-resultConfig.plugins.push(new webpack.DefinePlugin({ 'process.env.NODE_ENV': `"${NODE_ENV}"` }));
-
-module.exports = resultConfig;
+module.exports = merge(baseConfig(settings), configs[NODE_ENV](settings));

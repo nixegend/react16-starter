@@ -6,7 +6,7 @@ module.exports = (settings) => ({
 
   entry: [
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://${settings.host}:${settings.port}`,
+    `webpack-dev-server/client?${settings.https ? 'https' : 'http'}://${settings.host}:${settings.port}`,
     'webpack/hot/only-dev-server',
     `${settings.src}/index.hot-loader`,
   ],
@@ -14,7 +14,6 @@ module.exports = (settings) => ({
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new StyleLintPlugin({
       syntax: 'scss',
       configFile: '.stylelintrc',
@@ -28,7 +27,7 @@ module.exports = (settings) => ({
     historyApiFallback: true,
     host: settings.host,
     port: settings.port,
-    https: false,
+    https: settings.https,
     hot: true,
   },
 });
