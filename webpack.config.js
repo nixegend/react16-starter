@@ -7,11 +7,11 @@ const baseConfig = require(path.join(__dirname, './webpack-cfg/base')); // eslin
 const configs = {
   development: require(path.join(__dirname, './webpack-cfg/dev')), // eslint-disable-line
   production: require(path.join(__dirname, './webpack-cfg/prod')), // eslint-disable-line
-  staging: require(path.join(__dirname, './webpack-cfg/stage')), // eslint-disable-line
 };
 
 const settings = {
   env: NODE_ENV,
+  isProd: NODE_ENV === 'production',
   src: path.join(__dirname, './src'),
   dist: path.join(__dirname, './build'),
   publicPath: '/',

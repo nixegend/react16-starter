@@ -6,7 +6,7 @@ module.exports = (settings) => {
   const stylesLoaders = [
     {
       loader: 'css-loader',
-      options: { minimize: settings.env === 'production' },
+      options: { minimize: settings.isProd },
     },
     'postcss-loader',
     'sass-loader',
@@ -37,11 +37,11 @@ module.exports = (settings) => {
         {
           test: /\.js$/,
           include: settings.src,
-          use: (settings.env === 'development') ? ['babel-loader', 'eslint-loader'] : ['babel-loader'],
+          use: settings.isProd ? ['babel-loader'] : ['babel-loader', 'eslint-loader'],
         },
         {
           test: /\.(css|scss)$/,
-          loader: settings.env === 'production'
+          loader: settings.isProd
             ? ExtractTextPlugin.extract({ fallback: 'style-loader', use: stylesLoaders })
             : ['style-loader', ...stylesLoaders],
         },
@@ -58,11 +58,11 @@ module.exports = (settings) => {
 
     plugins: [
       new webpack.LoaderOptionsPlugin({
-        minimize: settings.env === 'production',
-        debug: settings.env !== 'production',
+        minimize: settings.isProd,
+        debug: !settings.isProd,
       }),
       new HtmlWebpackPlugin({ template: `${settings.src}/template.html` }),
-      new webpack.DefinePlugin({ 'process.env.NODE_ENV': `"${settings.env === 'development' ? 'development' : 'production'}"` }),
+      new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(settings.env) }),
     ],
   };
 };
