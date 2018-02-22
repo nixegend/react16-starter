@@ -2,7 +2,6 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { apiMiddleware } from 'redux-api-middleware';
 import nock from 'nock';
-import expect from 'expect';
 import { isFSA } from 'flux-standard-action';
 import * as apiConstants from '../../../common/constants/apiConstants';
 import actionTypes from '../../../common/constants/actionTypes';
@@ -24,13 +23,13 @@ describe('Users > actionCreators', () => {
     nock.cleanAll();
   });
 
-  test('should remove user by ID', () => {
+  it('should remove user by ID', () => {
     const userId = 'd1wy';
     const store = mockStore({ usersList: [...list] });
     const expectedActions = [{ type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }];
 
     expectedActions.forEach((action) => {
-      expect(isFSA(action)).toBe(true);
+      expect(isFSA(action)).toEqual(true);
     });
 
     return store.dispatch(removeUser(userId)).then(() => {
@@ -38,7 +37,7 @@ describe('Users > actionCreators', () => {
     });
   });
 
-  test('should load list of users', () => {
+  it('should load list of users', () => {
     const store = mockStore({ usersList: [] });
     const payload = [...list];
 
@@ -52,7 +51,7 @@ describe('Users > actionCreators', () => {
     ];
 
     expectedActions.forEach((action) => {
-      expect(isFSA(action)).toBe(true);
+      expect(isFSA(action)).toEqual(true);
     });
 
     return store.dispatch(loadUsersList()).then(() => {

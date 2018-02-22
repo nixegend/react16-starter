@@ -1,7 +1,5 @@
 import React from 'react';
-import expect from 'expect';
 import { shallow } from 'enzyme';
-
 import Home from './Home';
 
 function setup() {
@@ -13,11 +11,10 @@ function setup() {
 }
 
 describe('<Home />', () => {
-  test('should render Home', () => {
+  it('should render Home', () => {
     const { enzymeWrapper } = setup();
-
-    expect(enzymeWrapper.find('.home-container').length).toBe(1);
-    expect(enzymeWrapper.find('span').length).toBe(1);
-    expect(enzymeWrapper.find('h3').length).toBe(1);
+    expect(enzymeWrapper.find('.home-container').length).toEqual(1);
+    expect(enzymeWrapper.find('span').length).toEqual(1);
+    expect(enzymeWrapper.find('h3').length).toEqual(1);
   });
 });
