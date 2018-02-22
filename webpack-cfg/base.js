@@ -59,7 +59,7 @@ module.exports = (settings) => {
     plugins: [
       new webpack.LoaderOptionsPlugin({
         minimize: settings.isProd,
-        debug: !settings.isProd,
+        debug: false,
       }),
       new HtmlWebpackPlugin({ template: `${settings.src}/template.html` }),
       new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(settings.env) }),
