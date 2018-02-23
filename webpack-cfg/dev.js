@@ -14,6 +14,7 @@ module.exports = (settings) => ({
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new StyleLintPlugin({
       syntax: 'scss',
       configFile: '.stylelintrc',
