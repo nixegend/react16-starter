@@ -8,11 +8,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --color",
     "test": "jest",
     "test:w": "npm t -- -w",
-    "test:c": "npm t -- --coverage",
-    "testa": "mocha --require babel-register --require jsdom-global/register --require babel-polyfill --require ignore-styles \"src/**/*.test.js\" --color --require ./tests/setup.js",
-    "testsss": "mocha --require babel-register --require jsdom-global/register --require babel-polyfill --require ignore-styles \"src/**/*.test.js\" -c --require tests/setup",
-    "test-team-city": "mocha --reporter mocha-teamcity-reporter --require babel-register --require jsdom-global/register --require babel-polyfill --require mock-css-modules \"src/**/*.test.js\" -c --require tests/setup",
-    "coverer": "node ./node_modules/babel-istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --require jsdom-global/register --require babel-polyfill --require mock-css-modules \"src/**/*.test.js\" -c --require tests/setup",
+    "coverage": "npm t -- --coverage",
     "clean": "rimraf build",
     "flow": "./node_modules/.bin/flow",
     "winflow": "flow check",
@@ -47,15 +43,12 @@
     "autoprefixer": "^8.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
-    "babel-istanbul": "^0.12.2",
     "babel-jest": "^22.4.0",
     "babel-loader": "^7.1.2",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
@@ -68,25 +61,18 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
-    "expect": "^22.2.2",
-    "expect-enzyme": "^1.3.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "flow-bin": "^0.65.0",
     "flux-standard-action": "^2.0.1",
     "html-webpack-plugin": "^2.30.1",
-    "ignore-styles": "^5.0.1",
     "jest": "^22.3.0",
-    "jsdom": "^11.6.2",
-    "jsdom-global": "^3.0.2",
-    "mocha": "^5.0.0",
     "nock": "^9.1.6",
     "node-sass": "^4.7.2",
     "nodemon": "^1.14.12",
     "open": "^0.0.5",
     "postcss": "^6.0.17",
     "postcss-loader": "^2.1.0",
-    "precss": "^3.1.0",
     "react-addons-perf": "^15.4.2",
     "react-addons-test-utils": "^15.6.2",
     "react-hot-loader": "^3.1.3",
@@ -119,12 +105,15 @@
   },
   "homepage": "https://github.com/nixegend/react16-starter#readme",
   "jest": {
-    "moduleFileExtensions": ["js"],
-    "moduleDirectories": ["node_modules"],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "setupFiles": [
       "<rootDir>/tests/setup.js"
     ],
-
     "moduleNameMapper": {
       "\\.(css|scss)$": "<rootDir>/tests/mocks/styleMock.js"
     }
