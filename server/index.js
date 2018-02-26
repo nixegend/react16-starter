@@ -1,49 +1,48 @@
 const path = require('path');
-const http = require('http');
-const fallback = require('express-history-api-fallback');
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const open = require('open');
-const config = require('../app-settings');
+const fallback = require('express-history-api-fallback');
+const config = require('../common.config');
+const mockData = require('./mock-data');
 
-const API = config.apiUrl;
+const app = express();
 const PORT = process.env.PORT || config.serverPort;
-
-const usersList = [
-  { id: 'd1wy', name: 'Anthony' },
-  { id: 'e2wh', name: 'Bob' },
-  { id: 'f3wq', name: 'David' },
-  { id: 'c4we', name: 'Mark' },
-  { id: 'z5wd', name: 'Jim' },
-];
+const API = config.apiUrl;
 
 // https://github.com/expressjs/cors
+const localDevPath = `${config.protocol}://${config.clientHost}:${config.clientPort}`;
+
+const whitelist = [localDevPath];
+
 const corsOptions = {
-  origin: `http://${config.clientHost}:${config.clientPort}`,
+  origin: false,
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
-const app = express();
-app.set('port', PORT);
+const corsOptionsDelegate = (req, callback) => {
+  corsOptions.origin = whitelist.indexOf(req.header('Origin')) !== -1;
+  callback(null, corsOptions);
+};
 
-const server = http.createServer(app);
-server.listen(PORT);
-
-// static files
-app.use(cors(corsOptions)); // CORS middleware on express side
-app.use(express.static(path.join(__dirname, config.distFolder)));
-app.use(express.static(path.join(__dirname, '../static')));
+app.use(cors(corsOptionsDelegate)); // CORS middleware on express side
+app.use(express.static(path.join(__dirname, `../${config.staticFolder}`)));
+app.use(express.static(path.join(__dirname, `../${config.distFolder}`)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(fallback(`${__dirname}/index.html`));
+app.use(fallback('/index.html'));
 
-app.get(`${API}/users`, (req, res) => {
-  res.json(usersList);
+app.get('/*', (req, res, next) => {
+  if (req.url.indexOf(API) === -1) {
+    res.sendFile('/index.html');
+  } else {
+    next();
+  }
 });
 
-if (process.argv.indexOf('--open') !== -1) {
-  console.log(`Listening at ${config.serverHost}:${PORT}/`);
-  open(`http://${config.serverHost}:${PORT}/`);
-}
+app.get(`${API}/users`, (req, res) => {
+  res.json(mockData);
+});
+
+app.listen(PORT);
