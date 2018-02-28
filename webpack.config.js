@@ -13,7 +13,7 @@ const settings = {
   env: NODE_ENV,
   isProd: NODE_ENV === 'production',
   src: path.join(__dirname, './src'),
-  dist: path.join(__dirname, './build'),
+  dist: path.join(__dirname, './dist'),
   publicPath: '/',
   https: false,
   host: 'localhost',
