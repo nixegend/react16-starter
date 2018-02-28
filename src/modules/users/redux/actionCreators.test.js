@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { apiMiddleware } from 'redux-api-middleware';
-import nock from 'nock';
+import fetchMock from 'fetch-mock';
 import { isFSA } from 'flux-standard-action';
 import * as apiConstants from '../../../common/constants/apiConstants';
 import actionTypes from '../../../common/constants/actionTypes';
@@ -20,39 +20,38 @@ const list = [
 
 describe('Users > actionCreators', () => {
   afterEach(() => {
-    nock.cleanAll();
+    fetchMock.reset();
+    fetchMock.restore();
   });
 
-  it('should remove user by ID', () => {
+  test('should remove user by ID', () => {
     const userId = 'd1wy';
-    const store = mockStore({ usersList: [...list] });
+    const store = mockStore({});
     const expectedActions = [{ type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }];
 
     expectedActions.forEach((action) => {
       expect(isFSA(action)).toEqual(true);
     });
 
-    return store.dispatch(removeUser(userId)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
+    store.dispatch(removeUser(userId));
+    expect(store.getActions()).toEqual(expectedActions);
   });
 
-  it('should load list of users', () => {
-    const store = mockStore({ usersList: [] });
+  test('should load list of users', () => {
     const payload = [...list];
 
-    nock(apiConstants.API_SERVER)
-      .get(`${apiConstants.USERS_URL_PART}`)
-      .reply(200, payload);
+    fetchMock.getOnce(apiConstants.LOAD_USERS_LIST, { body: payload });
 
     const expectedActions = [
       { type: actionTypes.LOAD_USERS_LIST_REQUEST, payload: undefined, meta: undefined },
-      { type: actionTypes.LOAD_USERS_LIST_SUCCESS, payload, meta: undefined },
+      { type: actionTypes.LOAD_USERS_LIST_SUCCESS, payload: { usersList: payload }, meta: undefined },
     ];
 
     expectedActions.forEach((action) => {
       expect(isFSA(action)).toEqual(true);
     });
+
+    const store = mockStore({ usersList: [] });
 
     return store.dispatch(loadUsersList()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
