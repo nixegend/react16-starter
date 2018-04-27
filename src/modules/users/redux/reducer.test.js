@@ -10,18 +10,18 @@ const list = [
 ];
 
 describe('UsersList reducer', () => {
-  test('LOAD_USERS_LIST_SUCCESS should load list of users', () => {
+  it('LOAD_USERS_LIST_SUCCESS should load list of users', () => {
     const result = usersList([], { type: actionTypes.LOAD_USERS_LIST_SUCCESS, payload: { usersList: [...list] } });
     expect(result).toEqual([...list]);
   });
 
-  test('REMOVE_USER_BY_ID should remove user by ID', () => {
+  it('REMOVE_USER_BY_ID should remove user by ID', () => {
     const userId = 'd1wy';
     const result = usersList([...list], { type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } });
     expect(result).toEqual([...list].filter(user => user.id !== userId));
   });
 
-  test('should return default state if type doe not exist', () => {
+  it('should return default state if type doe not exist', () => {
     const result = usersList([], { type: 'SOME_TYPE' });
     expect(result).toEqual([]);
   });

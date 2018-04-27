@@ -24,7 +24,7 @@ describe('Users > actionCreators', () => {
     fetchMock.restore();
   });
 
-  test('should remove user by ID', () => {
+  it('should remove user by ID', () => {
     const userId = 'd1wy';
     const store = mockStore({});
     const expectedActions = [{ type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }];
@@ -37,7 +37,7 @@ describe('Users > actionCreators', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  test('should load list of users', () => {
+  it('should load list of users', () => {
     const payload = [...list];
 
     fetchMock.getOnce(apiConstants.LOAD_USERS_LIST, { body: payload });

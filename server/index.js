@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
-const config = require('../common.config');
+const config = require('../app-settings');
 const mockData = require('./mock-data');
 
 const app = express();
