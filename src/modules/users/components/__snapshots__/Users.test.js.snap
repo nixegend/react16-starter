@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Users /> renders correctly 1`] = `
+<div
+  className="container"
+>
+  <ul
+    className="list"
+  >
+    <li>
+      <span>
+        Bob3
+      </span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        remove
+      </button>
+    </li>
+    <li>
+      <span>
+        Bob2
+      </span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        remove
+      </button>
+    </li>
+    <li>
+      <span>
+        Bob1
+      </span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        remove
+      </button>
+    </li>
+  </ul>
+  <img
+    alt="img"
+    src="img/wb.png"
+  />
+</div>
+`;
