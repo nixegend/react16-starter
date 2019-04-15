@@ -1,28 +1,21 @@
 {
   "extends": "stylelint-config-standard",
-  "plugins": [
-    "stylelint-scss"
-  ],
+  "plugins": ["stylelint-scss"],
+  "ignoreFiles": "**/*.js",
   "rules": {
     "indentation": 2,
-    "string-quotes": "single",
     "no-duplicate-selectors": true,
     "color-hex-case": "lower",
     "color-named": "never",
-    "selector-no-qualifying-type": true,
+    "font-family-no-missing-generic-family-keyword": null,
     "selector-combinator-space-after": "always",
     "selector-attribute-quotes": "always",
-    "selector-attribute-operator-space-before": "always",
-    "selector-attribute-operator-space-after": "always",
-    "selector-attribute-brackets-space-inside": "never",
     "declaration-block-trailing-semicolon": "always",
     "declaration-colon-space-before": "never",
     "declaration-colon-space-after": "always",
-    "property-no-vendor-prefix": true,
     "value-no-vendor-prefix": true,
-    "number-leading-zero": "never",
+    "number-leading-zero": "always",
     "function-url-quotes": "always",
-    "font-family-name-quotes": "always-where-recommended",
     "comment-whitespace-inside": "always",
     "comment-empty-line-before": "always",
     "at-rule-no-vendor-prefix": true,
@@ -42,7 +35,6 @@
     "scss/at-rule-no-unknown": true,
     "scss/dollar-variable-colon-space-after": "always-single-line",
     "scss/dollar-variable-colon-space-before": "never",
-    "scss/double-slash-comment-empty-line-before": "always",
     "scss/declaration-nested-properties": "never",
     "scss/operator-no-unspaced": true,
     "scss/selector-no-redundant-nesting-selector": true,
@@ -53,17 +45,13 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": [
-          "global"
-        ]
+        "ignorePseudoClasses": ["global"]
       }
     ],
     "selector-type-no-unknown": [
       true,
       {
-        "ignoreTypes": [
-          "h7"
-        ]
+        "ignoreTypes": ["h7"]
       }
     ]
   }

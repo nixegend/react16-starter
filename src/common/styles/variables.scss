@@ -1,1 +1,22 @@
-$bg-color: #ccc;
+// Fonts
+$DefaultFont: Arial, sans-serif;
+$PrimaryFont: Arial, sans-serif;
+$SecondaryFont: Arial, sans-serif;
+
+// colors
+$MainBackgroundColor: #fff;
+$ClayGreyColor: #787878;
+$HeaderBgColor: #fafafa;
+$PlainGreyColor: #676767;
+$PlainLightGreyColor: #ccc;
+
+$HeaderHeight: 50px;
+
+// devices screen width
+$ScreenDesktopXl: 1366px;
+$ScreenDesktopSm: 1200px;
+$ScreenDesktopXs: 1024px;
+$ScreenTabletSm: 900px;
+$ScreenTabletXs: 768px;
+$ScreenMobileSm: 480px;
+$ScreenMobileXs: 320px;

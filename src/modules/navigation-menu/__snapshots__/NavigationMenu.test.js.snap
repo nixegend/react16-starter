@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavigationMenu /> Shoud render correctly NavigationMenu component 1`] = `
+<nav
+  className=""
+>
+  <a
+    className="logo"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="logo"
+      src="/images/sigma-logo.svg"
+    />
+  </a>
+  <a
+    aria-current="page"
+    className="active"
+    href="/"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    Home
+  </a>
+  <a
+    aria-current={null}
+    href="/entity"
+    onClick={[Function]}
+  >
+    Entity
+  </a>
+  <a
+    aria-current={null}
+    href="/test"
+    onClick={[Function]}
+  >
+    Test
+  </a>
+</nav>
+`;

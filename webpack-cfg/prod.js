@@ -1,24 +1,24 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = (settings) => ({
+module.exports = settings => ({
   entry: [`${settings.src}/index`],
+  mode: 'production',
+
+  optimization: {
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()]
+  },
+
+  output: {
+    path: settings.dist,
+    publicPath: settings.publicPath,
+    filename: 'bundle.[contenthash].js'
+  },
 
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      comments: false,
-      compress: {
-        drop_console: true,
-        sequences: true,
-        booleans: true,
-        loops: true,
-        unused: false,
-        warnings: false,
-      },
-    }),
-  ],
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: 'styles.[contenthash].css' })
+  ]
 });

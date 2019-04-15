@@ -1,0 +1,160 @@
+$FadeInAnimationModalWindowDuration: 170ms;
+$FadeOutAnimationModalWindowDuration: 170ms;
+
+.modal-window {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 0; // needed to work overflow-y auto in FireFox with flexbox layout
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 3;
+
+  @media (min-width: $ScreenTabletSm + 1) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .modal-window-container {
+    box-shadow: 0 0 60px 0 rgba(6, 8, 24, 0.3);
+    background-color: $MainBackgroundColor;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    flex-basis: auto;
+    min-height: 0; // needed to work overflow-y auto in FireFox with flexbox layout
+    width: 100%;
+
+    @media (min-width: $ScreenTabletSm + 1) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .modal-window-header {
+      display: flex;
+      align-items: center;
+      background-color: $HeaderBgColor;
+      flex: 0 0 $HeaderHeight;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      .title-container {
+        flex: 1 1 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        .title {
+          cursor: default;
+          font-family: $PrimaryFont;
+          font-size: 19px;
+          color: $ClayGreyColor;
+          white-space: nowrap;
+        }
+      }
+
+      .close-modal-window-btn {
+        cursor: pointer;
+        padding: 0;
+        line-height: 0;
+        background: none;
+        border: none;
+        height: 24px;
+        width: 24px;
+
+        .cross-sign-icon {
+          position: relative;
+          display: inline-block;
+
+          &:after,
+          &:before {
+            background-color: $ClayGreyColor;
+            content: "";
+            height: inherit;
+            position: absolute;
+            width: 3px;
+          }
+
+          &:after {
+            transform: rotate(-45deg);
+          }
+
+          &:before {
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+
+    .modal-window-content {
+      min-height: 0; // needed to work overflow-y auto in FireFox with flexbox layout
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+    }
+  }
+
+  &.full-height {
+    .modal-window-container {
+      flex-grow: 1;
+    }
+  }
+
+  &:not(.full-height) {
+    .modal-window-container {
+      flex-grow: 0;
+    }
+  }
+
+  &.scrollable-content {
+    overflow-y: hidden;
+
+    .modal-window-container {
+      flex-shrink: 1;
+    }
+  }
+
+  &:not(.scrollable-content) {
+    overflow-y: hidden;
+
+    @media (min-width: $ScreenTabletSm + 1) {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @extend %scrollbar-thin;
+
+    .modal-window-container {
+      flex-shrink: 1;
+
+      @media (min-width: $ScreenTabletSm + 1) {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &.modal-window-animation-enter {
+    opacity: 0;
+    transition: opacity $FadeInAnimationModalWindowDuration linear;
+
+    &.modal-window-animation-enter-active {
+      opacity: 1;
+      transition: opacity $FadeInAnimationModalWindowDuration linear;
+    }
+  }
+
+  &.modal-window-animation-exit {
+    opacity: 1;
+    transition: opacity $FadeOutAnimationModalWindowDuration linear;
+
+    &.modal-window-animation-exit-active {
+      opacity: 0;
+      transition: opacity $FadeOutAnimationModalWindowDuration linear;
+    }
+  }
+}

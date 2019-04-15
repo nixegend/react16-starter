@@ -1,0 +1,46 @@
+// @extend %name;
+// @include name(prop);
+
+@mixin triangle($bgColor, $border) {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: calc(50% - 10px);
+  background-color: $bgColor;
+  border: $border;
+  transform: rotate(-45deg);
+}
+
+@mixin base-transition($prop) {
+  transition: #{$prop} 130ms linear;
+}
+
+%scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #787878;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #08c;
+  }
+}
+
+%image-overlay {
+  &:before {
+    background: linear-gradient(to bottom right, rgba(59, 60, 63, 1) 10px, rgba(73, 25, 33, 1));
+    bottom: 0;
+    content: "";
+    left: 0;
+    opacity: 0.5;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

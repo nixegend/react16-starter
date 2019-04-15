@@ -8,8 +8,8 @@ const props = {
   users: [
     { name: 'Bob3', id: 'sfdsdfsdf' },
     { name: 'Bob2', id: 'dfgwerwrd' },
-    { name: 'Bob1', id: 's234sfsdg' },
-  ],
+    { name: 'Bob1', id: 's234sfsdg' }
+  ]
 };
 
 describe('<Users />', () => {

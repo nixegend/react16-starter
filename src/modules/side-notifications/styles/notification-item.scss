@@ -1,0 +1,83 @@
+$SideNotificationEnterAnimationDuration: 300ms;
+$SideNotificationExitAnimationDuration: 200ms;
+
+.notification-item {
+  display: flex;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(67, 74, 83, 0.1);
+  background-color: #fff;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 300px;
+
+  &:first-child {
+    margin-top: 10px;
+  }
+
+  .icon-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    opacity: 0.5;
+  }
+
+  .notification-content {
+    font-family: $PrimaryFont;
+    font-size: 16px;
+    padding-right: 20px;
+    padding-left: 10px;
+    cursor: default;
+  }
+
+  .status-icon {
+    align-items: center;
+    display: flex;
+    font-size: 21px;
+    width: 30px;
+  }
+
+  &.info {
+    .status-icon {
+      color: #08c;
+    }
+  }
+
+  &.warning {
+    .status-icon {
+      color: #ffa01c;
+    }
+  }
+
+  &.error {
+    .status-icon {
+      color: #fa0c0c;
+    }
+  }
+
+  &.side-notification-animation-enter {
+    opacity: 0;
+    transform: translateX(320px);
+    transition: opacity $SideNotificationEnterAnimationDuration linear, transform $SideNotificationEnterAnimationDuration linear;
+
+    &.side-notification-animation-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity $SideNotificationEnterAnimationDuration linear, transform $SideNotificationEnterAnimationDuration linear;
+    }
+  }
+
+  &.side-notification-animation-exit {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity $SideNotificationExitAnimationDuration linear, transform $SideNotificationExitAnimationDuration linear;
+
+    &.side-notification-animation-exit-active {
+      opacity: 0;
+      transform: translateX(320px);
+      transition: opacity $SideNotificationExitAnimationDuration linear, transform $SideNotificationExitAnimationDuration linear;
+    }
+  }
+}

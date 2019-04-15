@@ -1,4 +1,4 @@
-import actionTypes from '../../../common/constants/actionTypes';
+import actionTypes from '@constants/action-types';
 
 const usersList = (state = [], action) => {
   switch (action.type) {

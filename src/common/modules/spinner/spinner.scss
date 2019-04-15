@@ -1,0 +1,21 @@
+.spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border-style: solid;
+  border-top-color: $PlainLightGreyColor;
+  border-right-color: $PlainLightGreyColor;
+  border-bottom-color: $PlainLightGreyColor;
+  border-left-color: $PlainGreyColor;
+  animation: spinner 0.9s infinite linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

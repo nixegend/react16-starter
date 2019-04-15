@@ -1,34 +1,29 @@
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-module.exports = (settings) => ({
-  devtool: 'inline-source-map',
+module.exports = settings => ({
+  devtool: 'source-map',
+  mode: 'development',
 
-  entry: [
-    'react-hot-loader/patch',
-    `webpack-dev-server/client?${settings.https ? 'https' : 'http'}://${settings.host}:${settings.port}`,
-    'webpack/hot/only-dev-server',
-    `${settings.src}/index.hot-loader`,
-  ],
+  entry: [`${settings.src}/index`],
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
     new StyleLintPlugin({
+      fix: true,
       syntax: 'scss',
       configFile: '.stylelintrc',
       context: settings.src,
-      files: '**/*.scss',
-    }),
+      files: '**/*.scss'
+    })
   ],
 
   devServer: {
+    contentBase: settings.static,
     publicPath: settings.publicPath,
     historyApiFallback: true,
     host: settings.host,
     port: settings.port,
-    https: settings.https,
-    hot: true,
-  },
+    https: settings.protocol === 'https'
+  }
 });

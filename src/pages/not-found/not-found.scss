@@ -1,0 +1,23 @@
+.page-not-found-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: $PrimaryFont;
+
+  .error-number {
+    margin-bottom: 10px;
+    color: $ClayGreyColor;
+  }
+
+  .title {
+    margin-bottom: 10px;
+    color: $ClayGreyColor;
+  }
+
+  .sub-title {
+    margin-bottom: 10px;
+    color: $ClayGreyColor;
+  }
+}

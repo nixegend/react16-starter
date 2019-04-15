@@ -1,13 +1,69 @@
 {
-  "presets": ["react", "env", "stage-0"],
-  "plugins": ["react-hot-loader/babel"],
-
   "env": {
+    "development": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "browsers": ["last 2 versions"]
+            }
+          }
+        ],
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        [
+          "@babel/plugin-proposal-class-properties",
+          {
+            "loose": true
+          }
+        ],
+        [
+          "@babel/plugin-transform-arrow-functions",
+          {
+            "spec": true
+          }
+        ],
+        "@babel/plugin-transform-property-literals",
+        "@babel/plugin-transform-object-assign",
+        "@babel/plugin-proposal-object-rest-spread",
+        "react-hot-loader/babel"
+      ]
+    },
     "production": {
-      "presets": ["react-optimize"]
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "browsers": ["last 2 versions"]
+            }
+          }
+        ],
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "transform-react-remove-prop-types",
+        [
+          "@babel/plugin-proposal-class-properties",
+          {
+            "loose": true
+          }
+        ],
+        [
+          "@babel/plugin-transform-arrow-functions",
+          {
+            "spec": true
+          }
+        ],
+        "@babel/plugin-transform-object-assign",
+        "@babel/plugin-transform-property-literals",
+        "@babel/plugin-proposal-object-rest-spread"
+      ]
     },
     "test": {
-      "presets": ["env", "react"]
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
     }
   }
 }

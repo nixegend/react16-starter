@@ -1,0 +1,56 @@
+.desktop-nav-menu-container {
+  display: flex;
+  align-self: stretch;
+  align-items: stretch;
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+
+    > img {
+      max-height: 22px;
+    }
+  }
+
+  a:not(.logo) {
+    color: rgba($ClayGreyColor, 0.7);
+    display: inline-block;
+    padding: 20px 35px 15px 35px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $PrimaryFont;
+    letter-spacing: 1px;
+    font-size: 14px;
+
+    @include base-transition(all);
+
+    @media (max-width: $ScreenDesktopXs) {
+      padding: 20px 25px 15px 25px;
+    }
+
+    &:hover,
+    &.active {
+      color: $ClayGreyColor;
+    }
+
+    &.active {
+      position: relative;
+
+      &:after {
+        position: absolute;
+        content: "";
+        margin: 0 auto;
+        bottom: 13px;
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 5px;
+        display: inline-block;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #000;
+      }
+    }
+  }
+}

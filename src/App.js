@@ -1,23 +1,28 @@
+import './common/styles/reset.scss';
+import './common/styles/common.scss';
+
+import 'react-app-polyfill/ie11';
+
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { BrowserRouter } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import routes from './routes';
-import configureStore from './configureStore';
+import MainLayout from './pages/MainLayout';
+import configureStore from './configure-store';
 
-const history = createHistory();
+const history = createBrowserHistory();
 const store = configureStore(history);
 syncHistoryWithStore(history, store);
 
-// expose for debugging
-window.store = store;
-
 const App = () => (
   <Provider store={store}>
-    <BrowserRouter>{routes}</BrowserRouter>
+    <BrowserRouter>
+      <MainLayout />
+    </BrowserRouter>
   </Provider>
 );
 
-export default App;
+export default hot(App);

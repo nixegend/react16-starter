@@ -1,35 +1,33 @@
-import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { apiMiddleware } from 'redux-api-middleware';
-import fetchMock from 'fetch-mock';
 import { isFSA } from 'flux-standard-action';
-import * as apiConstants from '../../../common/constants/apiConstants';
-import actionTypes from '../../../common/constants/actionTypes';
+import configureMockStore from 'redux-mock-store';
+import { apiMiddleware } from 'redux-api-middleware';
+import actionTypes from '@constants/action-types';
 import { removeUser, loadUsersList } from './actionCreators';
 
-const middlewares = [thunk, apiMiddleware];
-const mockStore = configureMockStore(middlewares);
+const mockStore = configureMockStore([thunk, apiMiddleware]);
 
 const list = [
   { id: 'd1wy', name: 'Anthony' },
   { id: 'e2wh', name: 'Bob' },
   { id: 'f3wq', name: 'David' },
   { id: 'c4we', name: 'Mark' },
-  { id: 'z5wd', name: 'Jim' },
+  { id: 'z5wd', name: 'Jim' }
 ];
 
 describe('Users > actionCreators', () => {
   afterEach(() => {
-    fetchMock.reset();
-    fetchMock.restore();
+    fetch.resetMocks();
   });
 
   it('should remove user by ID', () => {
     const userId = 'd1wy';
     const store = mockStore({});
-    const expectedActions = [{ type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }];
+    const expectedActions = [
+      { type: actionTypes.REMOVE_USER_BY_ID, payload: { id: userId } }
+    ];
 
-    expectedActions.forEach((action) => {
+    expectedActions.forEach(action => {
       expect(isFSA(action)).toEqual(true);
     });
 
@@ -38,16 +36,26 @@ describe('Users > actionCreators', () => {
   });
 
   it('should load list of users', () => {
-    const payload = [...list];
+    const response = [...list];
 
-    fetchMock.getOnce(apiConstants.LOAD_USERS_LIST, { body: payload });
+    fetch.mockResponseOnce(JSON.stringify(response), {
+      headers: { 'Content-Type': 'application/json' }
+    });
 
     const expectedActions = [
-      { type: actionTypes.LOAD_USERS_LIST_REQUEST, payload: undefined, meta: undefined },
-      { type: actionTypes.LOAD_USERS_LIST_SUCCESS, payload: { usersList: payload }, meta: undefined },
+      {
+        type: actionTypes.LOAD_USERS_LIST_REQUEST,
+        payload: undefined,
+        meta: undefined
+      },
+      {
+        type: actionTypes.LOAD_USERS_LIST_SUCCESS,
+        payload: { usersList: response },
+        meta: undefined
+      }
     ];
 
-    expectedActions.forEach((action) => {
+    expectedActions.forEach(action => {
       expect(isFSA(action)).toEqual(true);
     });
 

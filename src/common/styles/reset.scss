@@ -1,0 +1,95 @@
+$DefaultLineHeight: 1.34563254;
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+blockquote,
+q {
+  quotes: none;
+  line-height: $DefaultLineHeight;
+}
+
+blockquote {
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+q {
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  cursor: default;
+  line-height: $DefaultLineHeight;
+}
+
+time {
+  cursor: default;
+}
+
+textarea {
+  line-height: $DefaultLineHeight;
+}
+
+select {
+  cursor: pointer;
+  line-height: $DefaultLineHeight;
+}
+
+a,
+button {
+  cursor: pointer;
+  border: none;
+  line-height: $DefaultLineHeight;
+}
+
+input {
+  border: none;
+  line-height: $DefaultLineHeight;
+}
+
+button {
+  border: none;
+  padding: 0;
+}
+
+span {
+  cursor: inherit;
+  color: inherit;
+  font-family: inherit;
+  line-height: $DefaultLineHeight;
+}
+
+img {
+  max-width: 100%;
+  line-height: 0;
+}
