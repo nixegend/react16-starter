@@ -16,14 +16,11 @@
       "version": "16.8.6"
     },
     "import/resolver": {
-      "alias": {
-        "map": [
-          ["@constants", "./src/common/constants/"],
-          ["@modules", "./src/common/modules/"],
-          ["@utils", "./src/common/utils/"]
-        ],
-        "extensions": [".js"]
-      }
+      "alias": [
+        ["@constants", "./src/common/constants/"],
+        ["@modules", "./src/common/modules/"],
+        ["@utils", "./src/common/utils/"]
+      ]
     }
   },
   "globals": {
